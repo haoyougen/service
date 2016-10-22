@@ -15,8 +15,16 @@ public class UserController {
 	@Autowired
 	private UserService service;
 
-	@RequestMapping("/name/{name}")
+	@RequestMapping("name/{name}")
 	public User getByName(@PathParam("name") String name) {
 		return service.getUserByName(name);
+	}
+
+	@RequestMapping("/")
+	public User testUser() {
+		User u = new User();
+		u.setName("w");
+		u.setAge(11);
+		return u;
 	}
 }
