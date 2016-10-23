@@ -1,9 +1,9 @@
 package com.ww.actions;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ww.service.UserService;
@@ -15,16 +15,16 @@ public class UserController {
 	@Autowired
 	private UserService service;
 
-	@RequestMapping("name/{name}")
-	public User getByName(@PathParam("name") String name) {
+	@RequestMapping(value = "/name/{name}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	public User getByName(@PathVariable("name") String name) {
 		return service.getUserByName(name);
 	}
 
-	@RequestMapping("/")
+	@RequestMapping(value = "/test", produces = "application/json;charset=UTF-8")
 	public User testUser() {
 		User u = new User();
 		u.setName("w");
-		u.setAge(11);
+		u.setPassword("good");
 		return u;
 	}
 }

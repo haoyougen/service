@@ -11,7 +11,7 @@
                http://www.springframework.org/schema/aop
                http://www.springframework.org/schema/aop/spring-aop.xsd">
                
-    <context:annotation-config />
+ 
 	
 	<import resource="mybatis-Hikari.xml"/>
 

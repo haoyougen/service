@@ -1,16 +1,16 @@
 package com.ww.vo;
 
 public class User {
-	private Long id;
+	private String code;
 	private String name;
-	private Integer age;
+	private String password;
 
-	public Long getId() {
-		return id;
+	public String getCode() {
+		return code;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getName() {
@@ -21,12 +21,13 @@ public class User {
 		this.name = name;
 	}
 
-	public Integer getAge() {
-		return age;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setPassword(String password) {
+		this.password = password;
 	}
+ 
 
 }

@@ -10,13 +10,12 @@
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<context:property-placeholder
-		ignore-unresolvable="true" />
+  
 
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="${mysql.driver.class}" />
 		<property name="jdbcUrl" value="${mysql.url}" />
-		<property name="username" value="${mysql.user}" />
+		<property name="username" value="${mysql.username}" />
 		<property name="password" value="${mysql.password}" />
 		<property name="maximumPoolSize" value="5" />
 		<property name="maxLifetime" value="700000" />
