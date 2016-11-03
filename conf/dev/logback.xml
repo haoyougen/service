@@ -9,7 +9,7 @@
     
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-    		<fileNamePattern>${APP_HOME}/logs/caas-web.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+    		<fileNamePattern>${APP_HOME}/logs/web.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
     		<maxHistory>10</maxHistory>
     	</rollingPolicy>
     	<encoder>
@@ -24,7 +24,7 @@
 	
 	<appender name="ACCESS_LOG_ADMIN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-    		<fileNamePattern>${APP_HOME}/logs/caas-admin-access.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+    		<fileNamePattern>${APP_HOME}/logs/access.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
     		<maxHistory>10</maxHistory>
     	</rollingPolicy>
     	<encoder>
@@ -33,7 +33,7 @@
     </appender>
     <appender name="ACCESS_LOG_USER_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-    		<fileNamePattern>${APP_HOME}/logs/caas-user-access.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+    		<fileNamePattern>${APP_HOME}/logs/user-access.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
     		<maxHistory>10</maxHistory>
     	</rollingPolicy>
     	<encoder>

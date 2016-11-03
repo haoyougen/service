@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ww.annotations.LoginRequired;
 import com.ww.service.UserService;
 import com.ww.vo.User;
 
@@ -22,6 +23,15 @@ public class UserController {
 
 	@RequestMapping(value = "/test", produces = "application/json;charset=UTF-8")
 	public User testUser() {
+		User u = new User();
+		u.setName("w");
+		u.setPassword("good");
+		return u;
+	}
+
+	@LoginRequired
+	@RequestMapping(value = "/login/test", produces = "application/json;charset=UTF-8")
+	public User loginUser() {
 		User u = new User();
 		u.setName("w");
 		u.setPassword("good");
