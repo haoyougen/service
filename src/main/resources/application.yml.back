@@ -1,25 +1,26 @@
 mysql:
-        name: test
-        url: jdbc:mysql://localhost:3306/test?useUnicode=true&charaterEncoding=utf-8
-        username: root
-        password:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver.class: com.mysql.jdbc.Driver
-        filters: stat
-        maxActive: 20
-        initialSize: 1
-        maxWait: 60000
-        minIdle: 1
-        timeBetweenEvictionRunsMillis: 60000
-        minEvictableIdleTimeMillis: 300000
-        validationQuery: select 'x'
-        testWhileIdle: true
-        testOnBorrow: false
-        testOnReturn: false
-        poolPreparedStatements: true
-        maxOpenPreparedStatements: 20
-        maxPoolSize: 10
-        idleTimeout: 5
-mybatis: 
+  name: test
+  url: jdbc:mysql://localhost:3306/test?useUnicode=true&charaterEncoding=utf-8
+  username: root
+  password: null
+  type: com.zaxxer.hikari.HikariDataSource
+  driver.class: com.mysql.jdbc.Driver
+  filters: stat
+  maxActive: 20
+  initialSize: 1
+  maxWait: 60000
+  minIdle: 1
+  timeBetweenEvictionRunsMillis: 60000
+  minEvictableIdleTimeMillis: 300000
+  validationQuery: select 'x'
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  poolPreparedStatements: true
+  maxOpenPreparedStatements: 20
+  maxPoolSize: 10
+  idleTimeout: 5
+  driverClassName: com.mysql.jdbc.Driver
+mybatis:
   mapperLocations: classpath:mapper/*.xml
   typeAliasesPackage: com.ww.dao

@@ -10,10 +10,10 @@
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-  
+
 
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<property name="driverClassName" value="${mysql.driver.class}" />
+		<property name="driverClassName" value="${mysql.driverClassName}" />
 		<property name="jdbcUrl" value="${mysql.url}" />
 		<property name="username" value="${mysql.username}" />
 		<property name="password" value="${mysql.password}" />
@@ -39,7 +39,7 @@
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:mybatis-configuration.xml"/>
+		<property name="configLocation" value="classpath:mybatis-configuration.xml" />
 		<property name="mapperLocations" value="classpath:mapper/*.xml" />
 
 
@@ -61,24 +61,17 @@
 	<aop:aspectj-autoproxy expose-proxy="true"
 		proxy-target-class="true" />
 
-<!-- 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="start*" propagation="REQUIRED" />
-			<tx:method name="submit*" propagation="REQUIRED" />
-			<tx:method name="clear*" propagation="REQUIRED" />
-			<tx:method name="create*" propagation="REQUIRED" />
-			<tx:method name="activate*" propagation="REQUIRED" />
-			<tx:method name="save*" propagation="REQUIRED" />
-			<tx:method name="insert*" propagation="REQUIRED" />
-			<tx:method name="add*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
-			<tx:method name="remove*" propagation="REQUIRED" />
-			<tx:method name="execute*" propagation="REQUIRED" />
-			<tx:method name="del*" propagation="REQUIRED" />
-			<tx:method name="*" read-only="true" />
-		</tx:attributes>
-	</tx:advice> -->
+	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager"> 
+		<tx:attributes> <tx:method name="start*" propagation="REQUIRED" /> <tx:method 
+		name="submit*" propagation="REQUIRED" /> <tx:method name="clear*" propagation="REQUIRED" 
+		/> <tx:method name="create*" propagation="REQUIRED" /> <tx:method name="activate*" 
+		propagation="REQUIRED" /> <tx:method name="save*" propagation="REQUIRED" 
+		/> <tx:method name="insert*" propagation="REQUIRED" /> <tx:method name="add*" 
+		propagation="REQUIRED" /> <tx:method name="update*" propagation="REQUIRED" 
+		/> <tx:method name="delete*" propagation="REQUIRED" /> <tx:method name="remove*" 
+		propagation="REQUIRED" /> <tx:method name="execute*" propagation="REQUIRED" 
+		/> <tx:method name="del*" propagation="REQUIRED" /> <tx:method name="*" read-only="true" 
+		/> </tx:attributes> </tx:advice> -->
 	<!-- <aop:config proxy-target-class="true" expose-proxy="true"> <aop:pointcut 
 		id="pt" expression="execution(public * com.xixicat.service.*.*(..))" /> <aop:advisor 
 		order="200" pointcut-ref="pt" advice-ref="txAdvice"/> </aop:config> -->

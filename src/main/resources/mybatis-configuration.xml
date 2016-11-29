@@ -6,5 +6,5 @@
 	<typeAliases>
 		<package name="com.ww.vo" />
 	</typeAliases>
-	 
+
 </configuration>
