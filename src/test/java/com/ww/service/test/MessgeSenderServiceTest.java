@@ -3,6 +3,7 @@ package com.ww.service.test;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -16,12 +17,12 @@ import com.ww.vo.BasicMessage;
 
 public class MessgeSenderServiceTest {
 	@Autowired
-	private MessageSenderService service;
+	private KafkaTemplate<String, String> template;
 
 	@Test
 	public void test() {
-		BasicMessage message = new BasicMessage();
-		service.send(message);
+		// BasicMessage message = new BasicMessage("hahahahah");
+		template.send("mytopic", "dddddddd");
 		System.out.println("done");
 	}
 }

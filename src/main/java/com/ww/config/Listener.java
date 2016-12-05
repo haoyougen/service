@@ -19,7 +19,7 @@ public class Listener {
 	@Value("${kafka.group}")
 	private String group;
 
-	@KafkaListener(topics = "linuxsogood-topic", group = "sync-group")
+	@KafkaListener(topics = "will_topic", group = "will_group")
 	public void listen(ConsumerRecord<?, ?> record) {
 		Optional<?> kafkaMessage = Optional.ofNullable(record.value());
 		if (kafkaMessage.isPresent()) {
