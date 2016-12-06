@@ -48,7 +48,7 @@ public class ElasticSearchLogService implements LogService {
 	}
 
 	public List<AccessLogVO> query(String fieldName,String fieldValue) {
-		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(queryString(fieldValue).field(fieldName)).build();
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(queryString(documentId).field(fieldName)).build();
 		Page<AccessLogVO> sampleEntities = elasticsearchTemplate.queryForPage(searchQuery, AccessLogVO.class);
 	}
 }
