@@ -15,12 +15,10 @@ import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 
 @Configuration
-@PropertySource(value = "file:${APP_HOME}/conf/${env}/:elasticsearch.properties")
+@PropertySource(value = "file:${APP_HOME}/conf/${env}/elasticsearch.properties")
 public class ElasticSearchConfig {
 	@Value("${elasticsearch.host}")
 	private String host;
-	@Value("${elasticsearch.port}")
-	private String port;
 	@Value("${elasticsearch.cluster.name}")
 	private String clusterName;
 
@@ -28,6 +26,7 @@ public class ElasticSearchConfig {
 	public Client client() {
 		TransportClient client = null;
 		final Settings settings = Settings.settingsBuilder().put("cluster.name", this.clusterName).build();
+
 		final String[] a = this.host.split("\\,", -1);
 		if (a == null || a.length == 0) {
 			throw new RuntimeException("invliad hosts");
@@ -52,6 +51,12 @@ public class ElasticSearchConfig {
 
 	@Bean
 	public ElasticsearchOperations elasticsearchTemplate() {
-		return new ElasticsearchTemplate(client());
+		ElasticsearchTemplate elasticsearchTemplate = new ElasticsearchTemplate(client());
+
+		if (!elasticsearchTemplate.indexExists("access_log_index")) {
+			elasticsearchTemplate.createIndex("access_log_index");
+		}
+		elasticsearchTemplate.createIndex("access_log_index");
+		return elasticsearchTemplate;
 	}
 }

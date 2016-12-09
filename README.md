@@ -13,3 +13,7 @@
 # kinanaintegration //todo
 # mycat db middleware integration//todo
 # zookeeper integration//todo
+
+
+#Testing URL
+http://localhost:8080/user/name/ww

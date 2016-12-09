@@ -11,15 +11,22 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Aspect
+import com.ww.service.AccessTraceService;
+import com.ww.vo.AccessLogVO;
+
+//@Aspect
 @Component
 public class LoginAspectInterceptor {
-	private static final Logger LOGGER = LoggerFactory.getLogger(LoginAspectInterceptor.class);
+	private static String accessLoggerName = "accessLog";
+	private static final Logger LOGGER = LoggerFactory.getLogger(accessLoggerName);
+	@Autowired
+	private AccessTraceService accessTraceService;
 
 	@Pointcut("execution(public * com.ww.actions..*.*(..))")
-	public void pointCut() {
+	public void LoginAspectInterceptor() {
 
 	}
 
@@ -31,6 +38,7 @@ public class LoginAspectInterceptor {
 	@Around("pointCut()")
 	public Object aroundLogCalls(ProceedingJoinPoint jp) throws Throwable {
 		LOGGER.info("正常运行");
+
 		return jp.proceed();
 	}
 
@@ -38,15 +46,9 @@ public class LoginAspectInterceptor {
 	public void before(JoinPoint jp) {
 		String className = jp.getThis().toString();
 		String methodName = jp.getSignature().getName(); // 获得方法名
-		LOGGER.info("位于：" + className + "调用" + methodName + "()方法-开始！");
+		AccessLogVO logvo = new AccessLogVO();
 		Object[] args = jp.getArgs(); // 获得参数列表
-		if (args.length <= 0) {
-			LOGGER.info("====" + methodName + "方法没有参数");
-		} else {
-			for (int i = 0; i < args.length; i++) {
-				LOGGER.info("====参数  " + (i + 1) + "：" + args[i]);
-			}
-		}
+
 		LOGGER.info("=====================================");
 	}
 
