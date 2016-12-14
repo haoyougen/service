@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.PartitionOffset;
+import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,13 +20,20 @@ public class Listener {
 
 	@Value("${kafka.group}")
 	private String group;
-
-	@KafkaListener(topics = "will_topic", group = "will_group")
+	
+	
+	@KafkaListener(id = "bar", topicPartitions =
+        { @TopicPartition(topic = "topic1", partitions = { "0", "1" }),
+          @TopicPartition(topic = "topic2", partitions = "0",
+             partitionOffsets = @PartitionOffset(partition = "1", initialOffset = "100"))
+        })
+	@KafkaListener(id="wi" ,topics = "will_topic", group = "will_group")
 	public void listen(ConsumerRecord<?, ?> record) {
 		Optional<?> kafkaMessage = Optional.ofNullable(record.value());
 		if (kafkaMessage.isPresent()) {
 			Object message = kafkaMessage.get();
 			LOGGER.info(message.toString());
+
 		}
 
 	}

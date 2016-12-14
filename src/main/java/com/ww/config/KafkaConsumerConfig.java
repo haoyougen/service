@@ -38,6 +38,9 @@ public class KafkaConsumerConfig {
 	KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> KafkaListenerContainerFactory() {
 		ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
 		factory.setConsumerFactory(consumerFactory());
+		// will create 3 KafkaMessageListenerContainer
+		// 6 TopicPartition s are provided and the concurrency is 3; each
+		// container will get 2 partitions.
 		factory.setConcurrency(3);
 		factory.getContainerProperties().setPollTimeout(10000);
 		return factory;
@@ -49,30 +52,29 @@ public class KafkaConsumerConfig {
 
 	}
 
-	
+	// // 消费者容器配置信息
+	// @Bean(name = "containerProperties")
+	// public ContainerProperties getContainerProperties() {
+	// ContainerProperties cp = new ContainerProperties(topics);
+	// cp.setMessageListener(listener());
+	// return cp;
+	// }
 
-//	// 消费者容器配置信息
-//	@Bean(name = "containerProperties")
-//	public ContainerProperties getContainerProperties() {
-//		ContainerProperties cp = new ContainerProperties(topics);
-//		cp.setMessageListener(listener());
-//		return cp;
-//	}
-
-//	// 创建kafkatemplate bean，使用的时候，只需要注入这个bean，即可使用template的send消息方法
-//	@Bean(name = "kafkaMessageListenerContainer")
-//	public KafkaMessageListenerContainer kafkaMessageListenerContainer() {
-//		KafkaMessageListenerContainer kc = new KafkaMessageListenerContainer(consumerFactory(),
-//				getContainerProperties());
-//		return kc;
-//
-//	}
+	// // 创建kafkatemplate bean，使用的时候，只需要注入这个bean，即可使用template的send消息方法
+	// @Bean(name = "kafkaMessageListenerContainer")
+	// public KafkaMessageListenerContainer kafkaMessageListenerContainer() {
+	// KafkaMessageListenerContainer kc = new
+	// KafkaMessageListenerContainer(consumerFactory(),
+	// getContainerProperties());
+	// return kc;
+	//
+	// }
 
 	@Bean
 	public Listener listener() {
 		return new Listener();
 	}
-	
+
 	@Bean
 	public Map<String, Object> consumerConfigs() {
 		Map<String, Object> propsMap = new HashMap<>();

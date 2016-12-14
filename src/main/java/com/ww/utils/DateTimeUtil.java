@@ -1,5 +1,6 @@
 package com.ww.utils;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -353,6 +354,17 @@ public class DateTimeUtil {
 		return DateToString(new Date(), 4);
 	}
 
+	 //多种日期格式  
+    private static DateFormat[] dateFormat = {  
+            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"),  
+            new SimpleDateFormat("yyyy-MM-dd HH:mm"),  
+            new SimpleDateFormat("yyyy-MM-dd HH"),  
+            new SimpleDateFormat("yyyy-MM-dd"),  
+            new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"),  
+            new SimpleDateFormat("yyyy/MM/dd HH:mm"),  
+            new SimpleDateFormat("yyyy/MM/dd HH"),  
+            new SimpleDateFormat("yyyy/MM/dd"),  
+    };  
 	public static void main(String[] args) {
 		try {
 			System.out.println(DateTimeUtil.DateToString(DateTimeUtil.getDayOfNextMonthByNow(1), 4));
