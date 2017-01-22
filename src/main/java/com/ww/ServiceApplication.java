@@ -7,16 +7,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import com.ww.config.WebAppConfig;
 import com.ww.intercepters.AccessInterceptor;
 
 @SpringBootApplication
 @ImportResource(value = { "classpath:service-web.xml" })
 @EnableAutoConfiguration
+@EnableConfigurationProperties
 public class ServiceApplication extends WebMvcConfigurerAdapter{
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceApplication.class);
 
